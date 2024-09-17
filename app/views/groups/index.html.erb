@@ -1,2 +1,19 @@
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
+
+filters
+
+<% @groups.each do |group| %>
+  <%= link_to group do %>
+    <h2><%= group.name %></h2>
+    <p><%= group.city %></p>
+    <% if !(group.photo.key.nil?) %>
+      <%= cl_image_tag group.photo.key, width: 200, height: 200, crop: :fill %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div style="width: 50%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>

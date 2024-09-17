@@ -1,2 +1,22 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<%= simple_form_for :search, url: groups_path, method: :get, html: { class: "d-flex" } do |f| %>
+  <%= f.input :city,
+    input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+  %>
+  <%= button_tag type: 'submit' do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+<% end %>
+
+<% @groups.each do |group| %>
+  <%= link_to group do %>
+    <h2><%= group.name %></h2>
+    <p><%= group.city %></p>
+    <% if !(group.photo.key.nil?) %>
+      <%= cl_image_tag group.photo.key, width: 200, height: 200, crop: :fill %>
+    <% end %>
+  <% end %>
+<% end %>

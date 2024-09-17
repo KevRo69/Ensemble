@@ -1,6 +1,10 @@
 class Group < ApplicationRecord
-  has_many :users, through: :group_users
+  geocoded_by :city
+  after_validation :geocode, if: :will_save_change_to_city?
+  has_many :user_groups, dependent: :destroy
+  has_many :users, through: :user_groups
+  has_one_attached :photo
   validates :name, presence: true
   validates :city, presence: true
-  validates :description, presence: true, length: { minimum: 10 }
+  validates :description, presence: true
 end
