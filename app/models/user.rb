@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :age, presence: true
   validates :address, presence: true
-  validates :nickname, presence: true, length: { minimum: 3, maximum: 24 }
-  validates :phone_number, length: { minimum: 10, maximum: 10 }
+  validates :nickname, presence: true, length: { maximum: 24 }
+  validates :phone_number, presence: true, length: { minimum: 10, maximum: 10 }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :bio, length: { maximum: 500 }
 end
