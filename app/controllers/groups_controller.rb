@@ -14,10 +14,13 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.user_id = current_user.id
     if @group.save
       redirect_to group_path(@group)
     else
-      render :new
+      print @group.errors.full_messages
+      print @group.user_id
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +43,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :description, :city)
+    params.require(:group).permit(:name, :description, :city, :user_id)
   end
 
   def set_group
