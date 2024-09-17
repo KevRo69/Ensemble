@@ -9,5 +9,5 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :address, presence: true
   validates :nickname, presence: true, length: { minimum: 3, maximum: 24 }
-  validates :phone_number, format: { with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ }
+  validates :phone_number, length: { minimum: 10, maximum: 10 }
 end
