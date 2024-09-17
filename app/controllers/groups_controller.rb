@@ -3,6 +3,13 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @markers = @groups.geocoded.map do |group|
+      {
+        lat: group.latitude,
+        lng: group.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {group: group})
+      }
+    end
   end
 
   def show
