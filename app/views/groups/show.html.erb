@@ -1,2 +1,11 @@
 <h1>Groups#show</h1>
 <p>Find me in app/views/groups/show.html.erb</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
+
+<h2> <%= @group.name %></h2>
+<%= cl_image_tag @group.photo.key, width: 200, height: 200, crop: :fill %>
+
+<p><%= @group.description %></p>
+<p><%= @group.city %></p>
