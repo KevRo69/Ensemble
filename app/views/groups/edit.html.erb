@@ -1,6 +1,8 @@
 <h1>Groups#edit</h1>
 <p>Find me in app/views/groups/edit.html.erb</p>
 
+<%= link_to 'Back', groups_path %>
+
 <%= simple_form_for @group do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
