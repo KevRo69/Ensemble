@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.user_id = current_user.id
+    @group.users << current_user
     if @group.save
       redirect_to group_path(@group)
     else
@@ -44,7 +45,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groups
+    redirect_to root_path
   end
 
   private

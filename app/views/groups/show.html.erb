@@ -5,10 +5,17 @@
 <%= link_to 'Back', groups_path %>
 
 <h2> <%= @group.name %></h2>
-<%= cl_image_tag @group.photo.key, width: 200, height: 200, crop: :fill %>
+<% if !(@group.photo.key.nil?) %>
+  <%= cl_image_tag @group.photo.key, width: 200, height: 200, crop: :fill %>
+<% end %>
 
 <p><%= @group.description %></p>
 <p><%= @group.city %></p>
+<ul>
+  <% @group.users.each do |user| %>
+    <li><%= user.nickname %>, <%= user.age %></li>
+  <% end %>
+</ul>
 
 <% if @group.user_id == current_user.id %>
   <%= link_to "Delete",
