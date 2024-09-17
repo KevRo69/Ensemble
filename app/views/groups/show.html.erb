@@ -9,3 +9,10 @@
 
 <p><%= @group.description %></p>
 <p><%= @group.city %></p>
+
+<% if @group.user_id == current_user.id %>
+  <%= link_to "Delete",
+    group_path(@group),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+<% end %>
