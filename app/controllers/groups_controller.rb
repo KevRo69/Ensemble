@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :remove_user]
 
   def index
     @groups = Group.all
@@ -50,6 +50,11 @@ class GroupsController < ApplicationController
 
   def add_user
     @group.users << current_user
+    redirect_to group_path(@group)
+  end
+
+  def remove_user
+    @group.users.delete(current_user)
     redirect_to group_path(@group)
   end
 

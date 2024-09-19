@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :groups
 
   get "groups/:id/add_user", to: "groups#add_user", as: :add_user
+  get "groups/:id/remove_user", to: "groups#remove_user", as: :remove_user
 end

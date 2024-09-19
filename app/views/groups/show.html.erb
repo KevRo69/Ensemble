@@ -12,12 +12,17 @@
 <p><%= @group.city %></p>
 <ul>
   <% @group.users.each do |user| %>
-    <li><%= user.nickname %>, <%= user.age %></li>
+    <li> <% if !(@group.photo.key.nil?) %><%= cl_image_tag user.photo.key, class: "avatar" %><% else %><%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", class: "avatar"%><% end %>
+    <%= user.nickname %>, <%= user.age %></li>
   <% end %>
 </ul>
 
 <% unless @group.users.include?(current_user) %>
   <%= link_to 'Rejoindre', add_user_path %>
+<% end %>
+
+<% if @group.users.include?(current_user) %>
+  <%= link_to 'Quitter le groupe', remove_user_path %>
 <% end %>
 
 <% if @group.user_id == current_user.id %>
