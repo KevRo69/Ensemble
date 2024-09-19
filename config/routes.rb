@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :groups
+
+  get "groups/:id/add_user", to: "groups#add_user", as: :add_user
 end

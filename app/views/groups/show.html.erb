@@ -1,8 +1,7 @@
 <h1>Groups#show</h1>
 <p>Find me in app/views/groups/show.html.erb</p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Retour', groups_path %>
 
 <h2> <%= @group.name %></h2>
 <% if !(@group.photo.key.nil?) %>
@@ -17,7 +16,12 @@
   <% end %>
 </ul>
 
+<% unless @group.users.include?(current_user) %>
+  <%= link_to 'Rejoindre', add_user_path %>
+<% end %>
+
 <% if @group.user_id == current_user.id %>
+  <%= link_to 'Modifier', edit_group_path(@group) %>
   <%= link_to "Delete",
     group_path(@group),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
