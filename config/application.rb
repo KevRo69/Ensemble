@@ -13,6 +13,12 @@ module Ensemble
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
+      # Charger tous les fichiers de traduction disponibles dans config/locales
+      config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+      # Définir la langue par défaut à :fr
+      config.i18n.default_locale = :fr
+      # (optionnel) Liste des langues disponibles
+      config.i18n.available_locales = [:fr, :en]
     end
 
     # Initialize configuration defaults for originally generated Rails version.
