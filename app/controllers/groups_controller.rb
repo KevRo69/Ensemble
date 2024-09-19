@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :remove_user]
 
   def index
     @groups = Group.all
@@ -39,13 +39,23 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_path(@group)
     else
-      render :edit
+      render :index, status: :unprocessable_entity
     end
   end
 
   def destroy
     @group.destroy
     redirect_to root_path
+  end
+
+  def add_user
+    @group.users << current_user
+    redirect_to group_path(@group)
+  end
+
+  def remove_user
+    @group.users.delete(current_user)
+    redirect_to group_path(@group)
   end
 
   private

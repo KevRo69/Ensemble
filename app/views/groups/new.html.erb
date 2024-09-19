@@ -1,13 +1,13 @@
 <h1>Groups#new</h1>
 <p>Find me in app/views/groups/new.html.erb</p>
 
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Retour', groups_path %>
 
 <%= simple_form_for @group do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name, label: "Nom" %>
   <%= f.text_field :name %>
 
-  <%= f.label :city %>
+  <%= f.label :city, label: "Lieu" %>
   <%= f.text_field :city %>
 
   <%= f.label :description %>
@@ -15,5 +15,5 @@
 
   <%= f.input :photo, as: :file %>
 
-  <%= f.submit %>
+  <%= f.submit "Créer le groupe" %>
 <% end %>
