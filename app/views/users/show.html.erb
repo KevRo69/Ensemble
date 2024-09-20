@@ -1,0 +1,9 @@
+<% @groups.each do |group| %>
+  <%= link_to group do %>
+    <h2><%= group.name %></h2>
+    <p><%= group.city %></p>
+    <% if !(group.photo.key.nil?) %>
+      <%= cl_image_tag group.photo.key, width: 200, height: 200, crop: :fill %>
+    <% end %>
+  <% end %>
+<% end %>
